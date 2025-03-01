@@ -12,14 +12,13 @@ const MenuContainer = () => {
   const [itemId, setItemId] = useState();
   const dispatch = useDispatch();
 
-  const increment = (id) => {
-    setItemId(id);
-    if (itemCount >= 4) return;
+  const increment = (item) => {
+    setItemId(item.id);
     setItemCount((prev) => prev + 1);
   };
 
-  const decrement = (id) => {
-    setItemId(id);
+  const decrement = (item) => {
+    setItemId(item.id);
     if (itemCount <= 0) return;
     setItemCount((prev) => prev - 1);
   };
@@ -28,7 +27,7 @@ const MenuContainer = () => {
     if(itemCount === 0) return;
 
     const {name, price} = item;
-    const newObj = { id: new Date(), name, pricePerQuantity: price, quantity: itemCount, price: price * itemCount };
+    const newObj = { id: new Date().toString(), name, pricePerQuantity: price, quantity: itemCount, price: price * itemCount };
 
     dispatch(addItems(newObj));
     setItemCount(0);
@@ -83,11 +82,11 @@ const MenuContainer = () => {
               </div>
               <div className="flex items-center justify-between w-full">
                 <p className="text-[#f5f5f5] text-xl font-bold">
-                  ₹{item.price}
+                  $ {item.price}
                 </p>
                 <div className="flex items-center justify-between bg-[#1f1f1f] px-4 py-3 rounded-lg gap-6 w-[50%]">
                   <button
-                    onClick={() => decrement(item.id)}
+                    onClick={() => decrement(item)}
                     className="text-yellow-500 text-2xl"
                   >
                     &minus;
@@ -96,7 +95,7 @@ const MenuContainer = () => {
                     {itemId == item.id ? itemCount : "0"}
                   </span>
                   <button
-                    onClick={() => increment(item.id)}
+                    onClick={() => increment(item)}
                     className="text-yellow-500 text-2xl"
                   >
                     &#43;
