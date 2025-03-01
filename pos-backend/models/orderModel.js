@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
     customerDetails: {
-        name: { type: String, required: true },
-        phone: { type: String, requried: true},
+        name: { type: String }, // Optional now
+        phone: { type: String }, // Optional now
         guests: { type: Number, required: true },
     },
     orderStatus: {
@@ -12,7 +12,7 @@ const orderSchema = new mongoose.Schema({
     },
     orderDate: {
         type: Date,
-        default : Date.now()
+        default: Date.now()
     },
     bills: {
         total: { type: Number, required: true },
@@ -26,6 +26,6 @@ const orderSchema = new mongoose.Schema({
         razorpay_order_id: String,
         razorpay_payment_id: String
     }
-}, { timestamps : true } );
+}, { timestamps: true });
 
 module.exports = mongoose.model("Order", orderSchema);

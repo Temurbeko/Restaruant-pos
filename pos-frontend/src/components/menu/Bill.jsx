@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTotalPrice } from "../../redux/slices/cartSlice";
 import {
@@ -36,6 +36,10 @@ const Bill = () => {
   const taxRate = 5.25;
   const tax = (total * taxRate) / 100;
   const totalPriceWithTax = total + tax;
+  const totalItemsCount = cartData.reduce(
+    (acc, item) => acc + item.quantity,
+    0
+  );
 
   const [paymentMethod, setPaymentMethod] = useState();
   const [showInvoice, setShowInvoice] = useState(false);
@@ -193,14 +197,16 @@ const Bill = () => {
     <>
       <div className="flex items-center justify-between px-5 mt-2">
         <p className="text-xs text-[#ababab] font-medium mt-2">
-          Items({cartData.lenght})
+          Items({totalItemsCount})
         </p>
         <h1 className="text-[#f5f5f5] text-md font-bold">
           $ {total.toFixed(2)}
         </h1>
       </div>
       <div className="flex items-center justify-between px-5 mt-2">
-        <p className="text-xs text-[#ababab] font-medium mt-2">Tax(5.25%)</p>
+        <p className="text-xs text-[#ababab] font-medium mt-2">
+          Tax({taxRate}%)
+        </p>
         <h1 className="text-[#f5f5f5] text-md font-bold">$ {tax.toFixed(2)}</h1>
       </div>
       <div className="flex items-center justify-between px-5 mt-2">

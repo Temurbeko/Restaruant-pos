@@ -1,4 +1,3 @@
-import React from "react";
 import { FaSearch } from "react-icons/fa";
 import OrderList from "./OrderList";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
@@ -17,6 +16,7 @@ const RecentOrders = () => {
   if (isError) {
     enqueueSnackbar("Something went wrong!", { variant: "error" });
   }
+  console.log("resData", resData);
 
   return (
     <div className="px-8 mt-6">
@@ -42,8 +42,8 @@ const RecentOrders = () => {
         {/* Order list */}
         <div className="mt-4 px-6 overflow-y-scroll h-[300px] scrollbar-hide">
           {resData?.data.data.length > 0 ? (
-            resData.data.data.map((order) => {
-              return <OrderList key={order._id} order={order} />;
+            resData.data.data.map((order, index) => {
+              return <OrderList key={order._id || index} order={order} />;
             })
           ) : (
             <p className="col-span-3 text-gray-500">No orders available</p>

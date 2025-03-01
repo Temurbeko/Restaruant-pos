@@ -13,7 +13,7 @@ const BottomNav = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [guestCount, setGuestCount] = useState(0);
+  const [guestCount, setGuestCount] = useState(1);
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
 
