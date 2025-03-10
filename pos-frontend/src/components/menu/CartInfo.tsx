@@ -77,7 +77,8 @@ const CartInfo = () => {
                     {item.name}
                   </h1>
                   <div className="text-[#ababab] font-semibold min-w-[150px] flex justify-between">
-                    <span>UZS {formatNumberWithSpaces(item.price)}</span> <span>x</span>
+                    <span>{formatNumberWithSpaces(item.price)} UZS</span>
+                    <span>x</span>
                     <span>{item.quantity} ta</span>
                   </div>
                 </div>

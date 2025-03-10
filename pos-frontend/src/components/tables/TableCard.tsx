@@ -10,10 +10,10 @@ const TableCard = ({ id, name, status, initials, seats }) => {
   const navigate = useNavigate();
 
   const handleClick = (name) => {
-    if (status === "Booked") return;
+    // if (status === "Booked") return;
     const table = { tableId: id, tableNo: name };
     dispatch(updateTable({ table }));
-    navigate(`/menu`);
+    navigate(`/menu/${id}`);
   };
 
   return (

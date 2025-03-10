@@ -53,7 +53,7 @@ const Tables = () => {
 
       {/* Tables Grid */}
       <div className="flex-1 px-4 py-2 overflow-y-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+        <div className="flex flex-wrap gap-4">
           {resData?.data.data.map((table) => (
             <TableCard
               key={table._id}

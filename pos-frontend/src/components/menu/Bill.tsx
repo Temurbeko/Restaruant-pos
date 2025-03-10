@@ -12,7 +12,8 @@ import { useMutation } from "@tanstack/react-query";
 import { removeAllItems } from "../../redux/slices/cartSlice";
 import { removeCustomer } from "../../redux/slices/customerSlice";
 import Invoice from "../invoice/Invoice";
-
+import { formatNumberWithSpaces } from "../../../utils";
+const DEFAULT_CURRENCY = "UZS";
 function loadScript(src) {
   return new Promise((resolve) => {
     const script = document.createElement("script");
@@ -71,7 +72,7 @@ const Bill = () => {
         // create order
 
         const reqData = {
-          amount: totalPriceWithTax.toFixed(2),
+          amount: totalPriceWithTax,
         };
 
         const { data } = await createOrderRazorpay(reqData);
@@ -200,21 +201,23 @@ const Bill = () => {
           Items({totalItemsCount})
         </p>
         <h1 className="text-[#f5f5f5] text-md font-bold">
-          $ {total.toFixed(2)}
+          {formatNumberWithSpaces(total)} {DEFAULT_CURRENCY}
         </h1>
       </div>
       <div className="flex items-center justify-between px-5 mt-2">
         <p className="text-xs text-[#ababab] font-medium mt-2">
           Tax({taxRate}%)
         </p>
-        <h1 className="text-[#f5f5f5] text-md font-bold">$ {tax.toFixed(2)}</h1>
+        <h1 className="text-[#f5f5f5] text-md font-bold">
+          {formatNumberWithSpaces(tax)} {DEFAULT_CURRENCY}
+        </h1>
       </div>
       <div className="flex items-center justify-between px-5 mt-2">
         <p className="text-xs text-[#ababab] font-medium mt-2">
           Total With Tax
         </p>
         <h1 className="text-[#f5f5f5] text-md font-bold">
-          $ {totalPriceWithTax.toFixed(2)}
+          {formatNumberWithSpaces(totalPriceWithTax)} {DEFAULT_CURRENCY}
         </h1>
       </div>
       <div className="flex items-center gap-3 px-5 mt-4">

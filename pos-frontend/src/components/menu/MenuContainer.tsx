@@ -4,6 +4,7 @@ import { GrRadialSelected } from "react-icons/gr";
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { addItems } from "../../redux/slices/cartSlice";
+import { formatNumberWithSpaces } from "../../../utils";
 
 //cart [{
 //   "id": "Sat Mar 01 2025 11:50:54 GMT+0500 (Узбекистан, стандартное время)",
@@ -83,7 +84,7 @@ const MenuContainer = () => {
             <div
               key={item.id}
               onClick={() => increment(item)}
-              className={`flex flex-col items-start justify-between p-4 rounded-lg h-[150px] cursor-pointer transition-colors duration-300 hover:bg-[#2a2a2a] ${
+              className={`flex flex-col items-start justify-between p-4 rounded-lg h-[150px] cursor-pointer transition-colors duration-300 hover:bg-[#2a2a2a] transform transition-transform ease-in-out active:scale-95 ${
                 item.image
                   ? "bg-cover bg-center bg-blend-multiply"
                   : "bg-[#1a1a1a]"
@@ -113,7 +114,7 @@ const MenuContainer = () => {
               </div>
               <div className="flex items-center justify-between w-full">
                 <p className="text-[#f5f5f5] text-xl font-bold">
-                  $ {item.price}
+                  {formatNumberWithSpaces(item.price)} UZS
                 </p>
               </div>
             </div>
